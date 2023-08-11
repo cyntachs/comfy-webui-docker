@@ -27,8 +27,8 @@ if [ ! -f "/stable-diffusion/.installed" ]; then
 
     touch /stable-diffusion/.installed
 else
-    chmod +x /update.sh
-    sh /update.sh
+    chmod +x /docker/update.sh
+    sh /docker/update.sh
 fi;
 
 cd /stable-diffusion
