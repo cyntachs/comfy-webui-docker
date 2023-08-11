@@ -1,6 +1,6 @@
 FROM pytorch/pytorch:latest
 
-RUN apt update && apt install git python3-pip libsm6 libxext6 -y && apt clean
+RUN apt update && apt install git python3-pip ffmpeg libsm6 libxext6 -y && apt clean
 
 RUN mkdir /docker
 COPY . /docker/
