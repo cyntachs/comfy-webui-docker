@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /
+
 if [ ! -f "/stable-diffusion/.installed" ]; then
     echo "Installing ComfyUI..."
     git clone https://github.com/comfyanonymous/ComfyUI.git /stable-diffusion
@@ -21,10 +23,13 @@ if [ ! -f "/stable-diffusion/.installed" ]; then
     git submodule update --init --recursive
     python install.py
 
-    cd /stable-diffusion
+    cd /
 
     touch /stable-diffusion/.installed
 else
     chmod +x /update.sh
     sh /update.sh
 fi;
+
+cd /stable-diffusion
+python -u main.py --listen --port 5555 ${CLI_ARGS}

@@ -12,4 +12,6 @@ cd ./custom_nodes/ComfyUI-Impact-Pack
 git fetch https://github.com/ltdrdata/ComfyUI-Impact-Pack.git
 git pull
 
+cd /
+
 echo "Done."

@@ -10,5 +10,3 @@ RUN mkdir ${ROOT}
 
 EXPOSE 5555
 ENTRYPOINT [ "sh" , "entrypoint.sh" ]
-WORKDIR ${ROOT}
-CMD python -u main.py --listen --port 5555 ${CLI_ARGS}
