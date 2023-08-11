@@ -1,0 +1,19 @@
+services:
+    comfyui-docker:
+        container_name: comfy-webui-docker
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: comfy-webui-docker:latest
+        ports:
+            - 5555:5555
+        volumes:
+            - /mnt/nvme0/testmount:/stable-diffusion
+        environment:
+            - CLI_ARGS=
+        deploy:
+            resources:
+                devices:
+                    - driver: nvidia
+                      device_ids: ['0']
+                      capabilities: [gpu]
