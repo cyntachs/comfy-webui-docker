@@ -32,4 +32,5 @@ else
 fi;
 
 cd /stable-diffusion
+echo "Starting ComfyUI..."
 python -u main.py --listen --port 5555 ${CLI_ARGS}
