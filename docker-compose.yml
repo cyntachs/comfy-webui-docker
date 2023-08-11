@@ -10,7 +10,7 @@ services:
     ports:
       - 5555:5555
     volumes:
-      - /mnt/nvme0/testmount:/stable-diffusion
+      - ${COMFY_VOLUME}:/stable-diffusion
     environment:
       - CLI_ARGS=
     deploy:
