@@ -4,6 +4,7 @@ RUN apt update && apt install git python3-pip -y && apt clean
 
 RUN mkdir /docker
 COPY . /docker/
+RUN chmod u+x /docker/entrypoint.sh
 
 ENV ROOT=/stable-diffusion
 RUN mkdir ${ROOT}
