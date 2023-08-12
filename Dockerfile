@@ -1,17 +1,22 @@
 FROM pytorch/pytorch:latest
 
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV CLI_ARGS=""
+
 RUN apt update && apt install git python3-pip libsm6 libxext6 -y && apt clean
 
 RUN mkdir /docker
 COPY /install_scripts/ /docker/
 RUN chmod u+x /docker/entrypoint.sh
-# ADD https://github.com/cyntachs/comfy-webui-docker/blob/main/install_scripts/entrypoint.sh /docker/
-# ADD https://github.com/cyntachs/comfy-webui-docker/blob/main/install_scripts/update.sh /docker/
 
 ENV ROOT=/stable-diffusion
-RUN mkdir ${ROOT}
+RUN git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
+	cd ${ROOT} && \
+	pip install -r requirements.txt
 
-ENV NVIDIA_VISIBLE_DEVICES=all
-ENV PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS=""
+RUN cd ${ROOT}/custom_nodes && \
+    git clone https://github.com/ltdrdata/ComfyUI-Manager.git
+
+WORKDIR ${ROOT}
 EXPOSE 5555
-ENTRYPOINT [ "/docker/entrypoint.sh" ]
+CMD python -u main.py --listen --port 5555 ${CLI_ARGS}
