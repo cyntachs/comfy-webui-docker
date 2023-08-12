@@ -13,3 +13,5 @@ ENV NVIDIA_VISIBLE_DEVICES=all
 ENV PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS=""
 EXPOSE 5555
 ENTRYPOINT [ "sh" , "/docker/entrypoint.sh" ]
+WORKDIR ${ROOT}
+RUN python -u main.py --listen --port 5555 ${CLI_ARGS}
