@@ -10,7 +10,7 @@ services:
     ports:
       - ${PORT}:5555
     volumes:
-      - ${COMFY_VOLUME}:/stable-diffusion
+      - ${VOLUME}:/stable-diffusion
     environment:
       - CLI_ARGS=
     deploy:
