@@ -14,12 +14,12 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
 	cd ${ROOT} && \
 	pip install -r requirements.txt
 
-WORKDIR ${ROOT}\custom_nodes
+WORKDIR ${ROOT}/custom_nodes
 RUN git clone https://github.com/Fannovel16/comfy_controlnet_preprocessors && \
     cd comfy_controlnet_preprocessors && \
     python install.py
 
-WORKDIR ${ROOT}\custom_nodes
+WORKDIR ${ROOT}/custom_nodes
 RUN git clone https://github.com/ltdrdata/ComfyUI-Impact-Pack.git && \
     cd ComfyUI-Impact-Pack && \
     git submodule update --init --recursive && \
