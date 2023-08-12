@@ -5,10 +5,6 @@ ENV CLI_ARGS=""
 
 RUN apt update && apt install git python3-pip libsm6 libxext6 -y && apt clean
 
-RUN mkdir /docker
-COPY /install_scripts/ /docker/
-RUN chmod u+x /docker/entrypoint.sh
-
 ENV ROOT=/stable-diffusion
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
 	cd ${ROOT} && \
