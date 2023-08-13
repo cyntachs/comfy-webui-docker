@@ -1,6 +1,9 @@
 FROM pytorch/pytorch:latest
 
-RUN apt update && apt install git python3-pip -y && apt clean
+RUN apt-get update && apt-get install git python3-pip -y
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ="America/New_York"
+RUN apt-get install -y tzdata && apt-get install libgl1 python3-opencv -y && apt clean
 RUN pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu118 xformers opencv-python-headless
 
 RUN mkdir /docker
