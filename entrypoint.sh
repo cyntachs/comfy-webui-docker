@@ -24,6 +24,9 @@ else
     git pull
 fi;
 
+echo "Set permissions..."
+chown -R user:user /stable-diffusion
+
 cd /stable-diffusion
 echo "Starting ComfyUI..."
 python -u main.py --listen --port 5555 ${CLI_ARGS}

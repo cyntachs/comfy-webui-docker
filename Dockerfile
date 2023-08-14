@@ -13,6 +13,9 @@ RUN chmod u+x /docker/entrypoint.sh
 ENV ROOT=/stable-diffusion
 RUN mkdir ${ROOT}
 
+RUN groupadd user && \
+    useradd user -g user -d /stable-diffusion
+
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS=""
 EXPOSE 5555
