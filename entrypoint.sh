@@ -22,6 +22,7 @@ else
 
     git fetch https://github.com/comfyanonymous/ComfyUI.git
     git pull
+    pip install -r requirements.txt
 fi;
 
 echo "Set permissions..."

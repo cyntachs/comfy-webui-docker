@@ -12,6 +12,7 @@ RUN chmod u+x /docker/entrypoint.sh
 
 ENV ROOT=/stable-diffusion
 RUN mkdir ${ROOT}
+RUN git config --global --add safe.directory /stable-diffusion
 
 RUN groupadd user && \
     useradd user -g user -d /stable-diffusion
