@@ -15,9 +15,11 @@ RUN mkdir ${ROOT}
 RUN git config --global --add safe.directory /stable-diffusion
 
 RUN groupadd user && \
-    useradd user -g user -d /stable-diffusion
+    useradd user -g user -d /stable-diffusion \
+    chown -R user:user /stable-diffusion
 
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS=""
 EXPOSE 5555
+USER user:user
 ENTRYPOINT [ "sh" , "/docker/entrypoint.sh" ]
