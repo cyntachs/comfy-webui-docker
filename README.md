@@ -6,17 +6,21 @@ The whole ComfyUI install is stored in an external mount, only the container get
 ## Installation
 Docker Compose is recommended.
 
+Use this template to run using Docker Compose:
 ```yml
 version: '3.9'
 
 services:
   comfyui-docker:
     container_name: comfy-webui-docker
-    image: ghcr.io/cyntachs/comfy-webui-docker:main
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cyntachs/comfy-webui-docker:main
     ports:
-      - 8188:5555
+      - 9897:5555
     volumes:
-      - /path/to/data:/stable-diffusion
+      - /Path/To/Data/:/stable-diffusion
     environment:
       - TZ="America/New_York"
       - CLI_ARGS=
@@ -27,4 +31,9 @@ services:
             - driver: nvidia
               device_ids: ['0']
               capabilities: [compute, utility]
+```
+
+Or you can clone this repo, go into the repo folder and run:
+```bash
+docker compose up --build
 ```

@@ -6,12 +6,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: comfy-webui-docker:latest
+    image: cyntachs/comfy-webui-docker:main
     ports:
       - ${PORT}:5555
     volumes:
       - ${VOLUME}:/stable-diffusion
     environment:
+      - TZ="America/New_York"
       - CLI_ARGS=
     deploy:
       resources:
