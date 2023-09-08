@@ -13,10 +13,10 @@ version: '3.9'
 services:
   comfyui-docker:
     container_name: comfy-webui-docker
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: cyntachs/comfy-webui-docker:main
+    #build: # uncomment if building
+    #  context: .
+    #  dockerfile: Dockerfile
+    image: ghcr.io/cyntachs/comfy-webui-docker:main
     ports:
       - 9897:5555
     volumes:
