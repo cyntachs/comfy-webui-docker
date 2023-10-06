@@ -2,7 +2,8 @@ FROM pytorch/pytorch:latest
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ="America/New_York"
-RUN apt-get update && \
+RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/lib/apt,rw \
+    apt-get update && \
     apt-get install git python3-pip -y && \
     apt-get install -y tzdata && \
     apt-get install libgl1 python3-opencv -y && \
