@@ -46,6 +46,7 @@ jobs:
     
   build:
 
+    needs: free-disk-space
     runs-on: ubuntu-latest
     permissions:
       contents: read
