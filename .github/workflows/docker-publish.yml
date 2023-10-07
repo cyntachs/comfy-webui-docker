@@ -23,11 +23,17 @@ env:
 
 
 jobs:
-  free-disk-space:
+  build:
   
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      # This is used to complete the identity challenge
+      # with sigstore/fulcio when running outside of PRs.
+      id-token: write
+
     steps:
-  
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
         with:
@@ -43,19 +49,7 @@ jobs:
           large-packages: true
           docker-images: true
           swap-storage: true
-    
-  build:
-
-    needs: free-disk-space
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      # This is used to complete the identity challenge
-      # with sigstore/fulcio when running outside of PRs.
-      id-token: write
-
-    steps:
+          
       - name: Checkout repository
         uses: actions/checkout@v3
 
