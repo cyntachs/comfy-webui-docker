@@ -1,4 +1,6 @@
-FROM pytorch/pytorch:latest
+FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
+
+LABEL version="1.2-cuda11.8" maintainer="Cyntachs"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ="America/New_York"
