@@ -11,7 +11,7 @@ RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/l
     apt-get install libgl1 python3-opencv -y && \
     apt-get clean
 RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu118 xformers opencv-python-headless
+    pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121 xformers opencv-python-headless
 
 ENV ROOT=/stable-diffusion
 RUN mkdir /docker
