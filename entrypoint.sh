@@ -16,7 +16,7 @@ if [ ! -f "/stable-diffusion/.installed" ]; then
     cd /
 
     touch /stable-diffusion/.installed
-elif [ ! -f "/custom_nodes/ComfyUI-Manager/__init__.py" ]; then
+elif [ ! -f "/stable-diffusion/custom_nodes/ComfyUI-Manager/__init__.py" ]; then
     echo "Updating ComfyUI..."
     cd /stable-diffusion
 
