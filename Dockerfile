@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 as build
+FROM ubuntu:22.04
 
 LABEL org.opencontainers.image.title="Comfy-WebUI-Docker"
 LABEL org.opencontainers.image.author="Cyntachs"
