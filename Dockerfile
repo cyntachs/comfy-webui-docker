@@ -10,9 +10,9 @@ COPY . /workspace/
 
 RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/lib/apt,rw set -eux; \
     apt-get update; \
-    apt-get install git python3-pip -y; \
-    apt-get install -y tzdata; \
-    apt-get install libgl1 python3-opencv -y; \
+    apt-get install --no-install-recommends -y git python3-pip; \
+    apt-get install --no-install-recommends -y tzdata; \
+    apt-get install --no-install-recommends libgl1 python3-opencv -y; \
     apt-get clean; \
     mkdir /stable-diffusion; \
     chmod +x /workspace/entrypoint.sh; \
