@@ -4,7 +4,7 @@ A Docker container of ComfyUI for stable-diffusion with ComfyUI Manager
 The whole ComfyUI install is stored in an external mount, only the container gets changed during restart or update.
 
 ## Installation
-Docker Compose is recommended.
+Installing via Docker Compose is recommended. This image only supports CPU or Nvidia. 
 
 Use this template to run using Docker Compose:
 ```yml
