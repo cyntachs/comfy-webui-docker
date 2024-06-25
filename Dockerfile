@@ -1,19 +1,25 @@
-FROM pytorch/pytorch:2.2.2-cuda12.1-cudnn8-runtime
+FROM ubuntu:22.04 as build
 
-LABEL version="py2.2-cuda12.1" maintainer="Cyntachs"
+LABEL org.opencontainers.image.title="Comfy-WebUI-Docker"
+LABEL org.opencontainers.image.author="Cyntachs"
+LABEL org.opencontainers.image.ref.name="ubuntu"
+LABEL org.opencontainers.image.version="pytorch2.3.1-cuda12.1"
+#LABEL com.nvidia.volumes.needed="nvidia_driver"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ="America/New_York"
-
 ENV NVIDIA_VISIBLE_DEVICES=all PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS=""
+
 COPY . /workspace/
 
-RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/lib/apt,rw set -eux; \
+RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/lib/apt,rw --mount=type=cache,target=/root/.cache/pip set -eux; \
     apt-get update; \
-    apt-get install --no-install-recommends -y git python3-pip; \
-    apt-get install --no-install-recommends -y tzdata; \
-    apt-get install --no-install-recommends libgl1 python3-opencv -y; \
-    apt-get clean; \
+    apt-get install --no-install-recommends -y git python3 python3-pip; \
+ #   apt-get install --no-install-recommends -y tzdata; \
+ #   apt-get install --no-install-recommends -y libgl1 python3-opencv; \
+    pip3 install tzdata opencv-python glcontext; \
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121; \
+    pip3 install xformers opencv-python-headless; \
     mkdir /stable-diffusion; \
     chmod +x /workspace/entrypoint.sh; \
     git config --global --add safe.directory /stable-diffusion; \
