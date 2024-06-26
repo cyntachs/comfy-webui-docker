@@ -24,8 +24,8 @@ elif [ ! -f "/stable-diffusion/custom_nodes/ComfyUI-Manager/__init__.py" ]; then
     pip3 install -r requirements.txt
 fi;
 
-echo "Set permissions..."
-chown -R user:user /stable-diffusion
+#echo "Set permissions..."
+#chown -R user:user /stable-diffusion
 
 cd /stable-diffusion
 echo "Starting ComfyUI..."

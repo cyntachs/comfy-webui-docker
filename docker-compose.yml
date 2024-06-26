@@ -14,10 +14,13 @@ services:
     environment:
       - TZ="America/New_York"
       - CLI_ARGS=
+    logging:
+      options:
+        max-size: 10m
     deploy:
       resources:
         reservations:
           devices:
             - driver: nvidia
-              device_ids: ['0']
-              capabilities: [compute, utility]
+              count: all
+              capabilities: [gpu]
