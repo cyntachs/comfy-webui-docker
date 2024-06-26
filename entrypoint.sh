@@ -6,7 +6,6 @@ if [ ! -f "/stable-diffusion/.installed" ]; then
     echo "Installing ComfyUI..."
     git clone https://github.com/comfyanonymous/ComfyUI.git /stable-diffusion
     cd /stable-diffusion
-	#pip3 install -r requirements.txt
     
     cd /stable-diffusion/custom_nodes
 
@@ -22,15 +21,12 @@ elif [ ! -f "/stable-diffusion/custom_nodes/ComfyUI-Manager/__init__.py" ]; then
 
     git fetch https://github.com/comfyanonymous/ComfyUI.git
     git pull
-    #pip3 install -r requirements.txt
+    pip3 install -r requirements.txt
 fi;
 
 echo "Set permissions..."
 chown -R user:user /stable-diffusion
 
 cd /stable-diffusion
-echo "PIP Install Requirements..."
-pip3 install -r requirements.txt
-
 echo "Starting ComfyUI..."
 python3 -u main.py --listen --port 5555 ${CLI_ARGS}
