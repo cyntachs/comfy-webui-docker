@@ -21,12 +21,26 @@ elif [ ! -f "/stable-diffusion/custom_nodes/ComfyUI-Manager/__init__.py" ]; then
 
     git fetch https://github.com/comfyanonymous/ComfyUI.git
     git pull
-    pip3 install -r requirements.txt
 fi;
 
 echo "Set permissions..."
 chown -R user:user /stable-diffusion
 
 cd /stable-diffusion
+if [ ! -d ".venv" ]; then
+    echo "Creating venv..."
+    python3 -m venv .venv
+    source .venv/bin/activate
+    python3 -m pip install --upgrade pip
+    python3 -m pip install tzdata opencv-python glcontext
+    python3 -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+    python3 -m pip install xformers opencv-python-headless
+    #python3 -m pip install -r requirements.txt
+fi;
+
+source .venv/bin/activate
+echo "PIP Install Requirements..."
+pip3 install -r requirements.txt
+
 echo "Starting ComfyUI..."
 python3 -u main.py --listen --port 5555 ${CLI_ARGS}
