@@ -14,7 +14,7 @@ COPY . /workspace/
 
 RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/lib/apt,rw --mount=type=cache,target=/root/.cache/pip set -eux; \
     apt-get update; \
-    apt-get install --no-install-recommends -y git python3 python3-pip; \
+    apt-get install --no-install-recommends -y git python3 python3-pip python3-venv; \
     python3 -m venv /.venv; \
     source /.venv/bin/activate; \
     pip3 install tzdata opencv-python glcontext; \
