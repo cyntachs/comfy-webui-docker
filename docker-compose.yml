@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: cyntachs/comfy-webui-docker:main
+    image: ghcr.io/cyntachs/comfy-webui-docker:main
     ports:
       - ${PORT}:5555
     volumes:
