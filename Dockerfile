@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 
 LABEL org.opencontainers.image.title="Comfy-WebUI-Docker"
 LABEL org.opencontainers.image.author="Cyntachs"
@@ -18,9 +18,9 @@ RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/l
     python3 -m venv /.venv; \
     source /.venv/bin/activate; \
     pip3 install tzdata opencv-python glcontext; \
+    pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt; \
     pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126; \
     pip3 install xformers opencv-python-headless; \
-    pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt; \
     mkdir /stable-diffusion; \
     chmod +x /workspace/entrypoint.sh; \
     git config --global --add safe.directory /stable-diffusion; \
