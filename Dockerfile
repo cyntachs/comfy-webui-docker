@@ -16,8 +16,8 @@ RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/l
     apt-get update; \
     apt-get install --no-install-recommends -y git python3 python3-pip; \
     pip3 install tzdata opencv-python glcontext; \
-    pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt; \
-    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126; \
+    pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt --index-url https://download.pytorch.org/whl/cu126; \
+#    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126; \
     pip3 install xformers opencv-python-headless; \
     mkdir /stable-diffusion; \
     chmod +x /workspace/entrypoint.sh; \
