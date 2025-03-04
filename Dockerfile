@@ -14,9 +14,7 @@ COPY . /workspace/
 
 RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/lib/apt,rw --mount=type=cache,target=/root/.cache/pip set -eux; \
     apt-get update; \
-    apt-get install --no-install-recommends -y git python3 python3-pip python3-venv; \
-    python3 -m venv /.venv; \
-    source /.venv/bin/activate; \
+    apt-get install --no-install-recommends -y git python3 python3-pip; \
     pip3 install tzdata opencv-python glcontext; \
     pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt; \
     pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126; \
