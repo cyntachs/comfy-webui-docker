@@ -1,5 +1,9 @@
 version: '3.9'
 
+volumes:
+  comfyui-docker-venv:
+    name: comfyui-docker-venv
+
 services:
   comfyui-docker:
     container_name: comfy-webui-docker
@@ -10,6 +14,7 @@ services:
     ports:
       - ${PORT}:5555
     volumes:
+      - comfyui-docker-venv:/venv
       - ${VOLUME}:/stable-diffusion
     environment:
       - TZ="America/New_York"
