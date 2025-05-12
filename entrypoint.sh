@@ -10,7 +10,7 @@ if [ ! -f "/stable-diffusion/.installed" ]; then
     cd /stable-diffusion/custom_nodes
 
     echo "Installing ComfyUI Manager..."
-    git clone https://github.com/ltdrdata/ComfyUI-Manager.git
+    git clone https://github.com/Comfy-Org/ComfyUI-Manager.git
 
     cd /
 
@@ -23,9 +23,6 @@ elif [ ! -f "/stable-diffusion/custom_nodes/ComfyUI-Manager/__init__.py" ]; then
     git pull
     pip3 install -r requirements.txt
 fi;
-
-#echo "Set permissions..."
-#chown -R user:user /stable-diffusion
 
 cd /stable-diffusion
 echo "Starting ComfyUI..."
