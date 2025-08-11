@@ -16,7 +16,7 @@ ENV VIRTUAL_ENV=/venv
 ENV PATH="/venv/bin:$PATH"
 RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/lib/apt,rw --mount=type=cache,target=/root/.cache/pip set -eux; \
     apt-get update; \
-    apt-get install --no-install-recommends -y git python3 python3-pip python3-venv wget; \
+    apt-get install --no-install-recommends -y git python3 python3-pip python3-dev python3-venv wget build-essential; \
     mkdir /stable-diffusion; \
     mkdir /venv; \
     git config --global --add safe.directory /stable-diffusion; \
