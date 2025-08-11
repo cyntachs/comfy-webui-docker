@@ -23,7 +23,27 @@ elif [ ! -f "/stable-diffusion/custom_nodes/ComfyUI-Manager/__init__.py" ]; then
     git pull
     pip3 install -r requirements.txt
 fi;
+if [ ! -f "/stable-diffusion/.sage-installed" ]; then
+    cd /stable-diffusion
+    
+    wget https://raw.githubusercontent.com/loscrossos/helper_comfyUI_accel/refs/heads/main/accelerated_270_312.txt
+    pip3 install -r accelerated_270_312.txt
+    pip3 install -r requirements.txt
+    
+    cd /
+    
+    touch /stable-diffusion/.sage-installed
+fi;
+if [ -f "/stable-diffusion/.req-reinstall" ]; then
+    cd /stable-diffusion
+    
+    pip3 install -r requirements.txt
+    
+    cd /
+    
+    rm -f /stable-diffusion/.req-reinstall
+fi;
 
 cd /stable-diffusion
 echo "Starting ComfyUI..."
-python3 -u main.py --listen --port 5555 ${CLI_ARGS}
+python3 -u main.py --use-sage-attention --listen --port 5555 ${CLI_ARGS}
