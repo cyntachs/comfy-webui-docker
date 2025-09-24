@@ -20,17 +20,16 @@ RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/l
     mkdir /stable-diffusion; \
     mkdir /venv; \
     git config --global --add safe.directory /stable-diffusion; \
-    groupadd user; \
-    useradd user -g user -d /stable-diffusion; \
-    chown -R user:user /stable-diffusion; \
+    usermod -d /stable-diffusion ubuntu; \
+    chown -R ubuntu:ubuntu /stable-diffusion; \
     chmod +x /workspace/entrypoint.sh; \
     python3 -m venv /venv; \
     pip3 install tzdata opencv-python glcontext; \
     pip3 install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu128; \
     pip3 install opencv-python-headless; \
     pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt; \
-    chown -R user:user /venv; 
+    chown -R ubuntu:ubuntu /venv; 
 
 EXPOSE 5555
-USER user:user
+USER ubuntu:ubuntu
 ENTRYPOINT [ "sh" , "/workspace/entrypoint.sh" ]
