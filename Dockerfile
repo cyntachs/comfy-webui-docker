@@ -3,7 +3,7 @@ FROM ubuntu:24.04
 LABEL org.opencontainers.image.title="Comfy-WebUI-Docker"
 LABEL org.opencontainers.image.author="Cyntachs"
 LABEL org.opencontainers.image.ref.name="Ubuntu24.04"
-LABEL org.opencontainers.image.version="pytorch2.7.0+cu128"
+LABEL org.opencontainers.image.version="pytorch2.9.1+cu130"
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -25,7 +25,7 @@ RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/l
     chmod +x /workspace/entrypoint.sh; \
     python3 -m venv /venv; \
     pip3 install tzdata opencv-python glcontext; \
-    pip3 install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu128; \
+    pip3 install torch torchvision torchaudio pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130; \
     pip3 install opencv-python-headless; \
     pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt; \
     chown -R ubuntu:ubuntu /venv; 
