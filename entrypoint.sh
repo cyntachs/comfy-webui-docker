@@ -46,4 +46,8 @@ fi;
 
 cd /stable-diffusion
 echo "Starting ComfyUI..."
-python3 -u main.py --use-sage-attention --listen --port 5555 ${CLI_ARGS}
+if [ -f "/stable-diffusion/.sage-installed" ]; then
+	python3 -u main.py --use-sage-attention --listen --port 5555 ${CLI_ARGS}
+else
+	python3 -u main.py --listen --port 5555 ${CLI_ARGS}
+fi;
