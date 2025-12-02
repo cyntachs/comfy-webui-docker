@@ -26,6 +26,7 @@ fi;
 if [ ! -f "/stable-diffusion/.sage-installed" ]; then
     cd /stable-diffusion
     
+	rm -f ./acceleritor_torch280cu129_full.txt
     wget https://raw.githubusercontent.com/loscrossos/crossOS_acceleritor/refs/heads/main/acceleritor_torch280cu129_full.txt
     pip3 install -r acceleritor_torch280cu129_full.txt
     pip3 install -r requirements.txt
