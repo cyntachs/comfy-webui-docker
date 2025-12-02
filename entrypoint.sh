@@ -40,7 +40,7 @@ if [ -f "/stable-diffusion/.req-reinstall" ]; then
     pip3 install -r requirements.txt
 	
 	find ./custom_nodes/ -name "requirements*.txt" -type f | while read -r file; do
-		pip3 install -r "$file"
+		pip3 install --upgrade-strategy only-if-needed -r "$file" 
 		#echo "$file"
 	done
     
