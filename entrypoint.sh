@@ -38,6 +38,11 @@ if [ -f "/stable-diffusion/.req-reinstall" ]; then
     cd /stable-diffusion
     
     pip3 install -r requirements.txt
+	
+	find ./custom_nodes/ -name "requirements*.txt" -type f | while read -r file; do
+		pip install -r "$file"
+		#echo "$file"
+	done
     
     cd /
     
