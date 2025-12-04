@@ -26,9 +26,9 @@ fi;
 if [ ! -f "/stable-diffusion/.sage-installed" ]; then
     cd /stable-diffusion
     
-	rm -f ./acceleritor_torch280cu129_full.txt
-    wget https://raw.githubusercontent.com/loscrossos/crossOS_acceleritor/refs/heads/main/acceleritor_torch280cu129_full.txt
-    pip3 install -r acceleritor_torch280cu129_full.txt
+	#rm -f ./acceleritor_torch280cu129_full.txt
+    #wget https://raw.githubusercontent.com/loscrossos/crossOS_acceleritor/refs/heads/main/acceleritor_torch280cu129_full.txt
+    pip3 install -r https://raw.githubusercontent.com/loscrossos/crossOS_acceleritor/refs/heads/main/acceleritor_torch280cu129_full.txt
     pip3 install -r requirements.txt
     
     cd /
@@ -40,10 +40,19 @@ if [ -f "/stable-diffusion/.req-reinstall" ]; then
     
     pip3 install -r requirements.txt
 	
-	find ./custom_nodes/ -name "requirements*.txt" -type f | while read -r file; do
-		pip3 install --upgrade-strategy only-if-needed -r "$file" 
-		#echo "$file"
-	done
+    # comfyui-manager is better at fixing dependencies
+	#find ./custom_nodes/ -name "requirements*.txt" -type f | while read -r file; do
+	#	pip3 install --upgrade-strategy only-if-needed -r "$file" 
+	#done
+    
+    cd /
+    
+    rm -f /stable-diffusion/.req-reinstall
+fi;
+if [ -f "/stable-diffusion/.req-reinstall-online" ]; then
+    cd /stable-diffusion
+    
+    pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt
     
     cd /
     
@@ -51,9 +60,10 @@ if [ -f "/stable-diffusion/.req-reinstall" ]; then
 fi;
 
 cd /stable-diffusion
-echo "Starting ComfyUI..."
 if [ -f "/stable-diffusion/.sage-installed" ]; then
+    echo "========== Starting ComfyUI (Sage Attention) =========="
 	python3 -u main.py --use-sage-attention --listen --port 5555 ${CLI_ARGS}
 else
+    echo "========== Starting ComfyUI =========="
 	python3 -u main.py --listen --port 5555 ${CLI_ARGS}
 fi;
