@@ -1,8 +1,8 @@
-FROM ubuntu:24.04
+FROM nvidia/cuda:13.0.2-cudnn-devel-ubuntu24.04
 
 LABEL org.opencontainers.image.title="Comfy-WebUI-Docker"
 LABEL org.opencontainers.image.author="Cyntachs"
-LABEL org.opencontainers.image.ref.name="Ubuntu24.04"
+LABEL org.opencontainers.image.ref.name="Ubuntu24.04-Nvidia"
 LABEL org.opencontainers.image.version="pytorch2.9.1+cu130"
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 
