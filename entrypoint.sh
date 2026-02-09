@@ -5,7 +5,7 @@ cd /
 # initialize folder
 if [ ! -f "/stable-diffusion/.installed" ]; then
     echo "Installing ComfyUI..."
-    git clone https://github.com/comfyanonymous/ComfyUI.git /stable-diffusion
+    git clone https://github.com/Comfy-Org/ComfyUI.git /stable-diffusion
     cd /stable-diffusion
     
     cd /stable-diffusion/custom_nodes
@@ -20,7 +20,7 @@ elif [ ! -f "/stable-diffusion/custom_nodes/ComfyUI-Manager/__init__.py" ]; then
     echo "Updating ComfyUI..."
     cd /stable-diffusion
 
-    git fetch https://github.com/comfyanonymous/ComfyUI.git
+    git fetch https://github.com/Comfy-Org/ComfyUI.git
     git pull
     pip3 install -r requirements.txt
 fi;
@@ -34,7 +34,7 @@ if [ -f "/stable-diffusion/.rebuild-venv" ]; then
     pip3 install torch torchvision torchaudio pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130
     pip3 install opencv-python-headless
     pip3 install -r https://raw.githubusercontent.com/loscrossos/crossOS_acceleritor/refs/heads/main/acceleritor_torch280cu129_full.txt
-    pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt
+    pip3 install -r https://raw.githubusercontent.com/Comfy-Org/ComfyUI/master/requirements.txt
     
     rm -f /stable-diffusion/.rebuild-venv
 
@@ -70,7 +70,7 @@ fi;
 if [ -f "/stable-diffusion/.req-reinstall-online" ]; then
     cd /stable-diffusion
     
-    pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt
+    pip3 install -r https://raw.githubusercontent.com/Comfy-Org/ComfyUI/master/requirements.txt
     
     cd /
     
