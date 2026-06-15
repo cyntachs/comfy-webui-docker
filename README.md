@@ -27,8 +27,8 @@ services:
       - comfyui-docker-venv:/venv
       - /Path/To/Data/:/stable-diffusion
     environment:
-      - TZ="America/New_York"
-      - CLI_ARGS=
+      TZ: America/New_York
+      CLI_ARGS: --disable-api-nodes
     logging:
       options:
         max-size: 10m
