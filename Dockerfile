@@ -24,11 +24,11 @@ RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/l
     chmod 775 -R /stable-diffusion; \
     chmod +x /workspace/entrypoint.sh; \
     python3 -m venv /venv; \
-    pip3 install tzdata opencv-python glcontext; \
-    pip3 install torch torchvision pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130; \
-    pip3 install torchaudio==2.8.0; \
-    pip3 install opencv-python-headless; \
-    pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt; \
+    /venv/bin/python3 -m pip3 install tzdata opencv-python glcontext; \
+    /venv/bin/python3 -m pip3 install torch torchvision pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130; \
+    /venv/bin/python3 -m pip3 install torchaudio==2.8.0; \
+    /venv/bin/python3 -m pip3 install opencv-python-headless; \
+    /venv/bin/python3 -m pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt; \
     chown -R ubuntu:ubuntu /venv; 
 
 EXPOSE 5555
