@@ -31,28 +31,27 @@ if [ -f "/stable-diffusion/.rebuild-venv" ]; then
     
     python3 -m venv /venv
     pip3 install tzdata opencv-python glcontext
-    pip3 install torch torchvision torchaudio pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130
+    pip3 install torch torchvision pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130
+    pip3 install torchaudio==2.8.0
     pip3 install opencv-python-headless
-    pip3 install -r https://raw.githubusercontent.com/loscrossos/crossOS_acceleritor/refs/heads/main/acceleritor_torch280cu129_full.txt
     pip3 install -r https://raw.githubusercontent.com/Comfy-Org/ComfyUI/master/requirements.txt
     
     rm -f /stable-diffusion/.rebuild-venv
-
-    touch /stable-diffusion/.sage-installed
-    touch /stable-diffusion/.use-sage
 fi;
 
-# install sage if not installed
-if [ ! -f "/stable-diffusion/.sage-installed" ]; then
-    cd /stable-diffusion
+# using sage
+if [ -f "/stable-diffusion/.use-sage" ]; then
+    # install sage if not installed
+    if [ ! -f "/stable-diffusion/.sage-installed" ]; then
+        cd /stable-diffusion
     
-    pip3 install -r https://raw.githubusercontent.com/loscrossos/crossOS_acceleritor/refs/heads/main/acceleritor_torch280cu129_full.txt
-    pip3 install -r requirements.txt
-    
-    cd /
-    
-    touch /stable-diffusion/.sage-installed
-    touch /stable-diffusion/.use-sage
+        pip3 install -r https://raw.githubusercontent.com/loscrossos/crossOS_acceleritor/refs/heads/main/acceleritor_torch280cu129_full.txt
+        
+        cd /
+        
+        touch /stable-diffusion/.sage-installed
+        touch /stable-diffusion/.req-reinstall-online
+    fi;
 fi;
 
 # reinstall requirements

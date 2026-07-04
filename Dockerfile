@@ -7,13 +7,12 @@ LABEL org.opencontainers.image.version="pytorch2.9.1+cu130"
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ="America/New_York"
-ENV NVIDIA_VISIBLE_DEVICES=all PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS=""
+
+ENV VIRTUAL_ENV="/venv" PATH="/venv/bin:$PATH"
+ENV NVIDIA_VISIBLE_DEVICES=all CLI_ARGS="" TZ="America/New_York"
 
 COPY . /workspace/
 
-ENV VIRTUAL_ENV=/venv
-ENV PATH="/venv/bin:$PATH"
 RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/lib/apt,rw --mount=type=cache,target=/root/.cache/pip set -eux; \
     apt-get update; \
     apt-get install --no-install-recommends -y git python3 python3-pip python3-dev python3-venv wget build-essential ffmpeg; \
@@ -26,7 +25,8 @@ RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/l
     chmod +x /workspace/entrypoint.sh; \
     python3 -m venv /venv; \
     pip3 install tzdata opencv-python glcontext; \
-    pip3 install torch torchvision torchaudio pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130; \
+    pip3 install torch torchvision pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130; \
+    pip3 install torchaudio==2.8.0; \
     pip3 install opencv-python-headless; \
     pip3 install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt; \
     chown -R ubuntu:ubuntu /venv; 
