@@ -32,7 +32,7 @@ if [ -f "/stable-diffusion/.rebuild-venv" ]; then
     python3 -m venv /venv
     /venv/bin/python3 -m pip install tzdata opencv-python glcontext
     /venv/bin/python3 -m pip install torch==2.11.0 torchvision==0.26.0 pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130
-    /venv/bin/python3 -m pip install torchaudio==2.8.0
+    /venv/bin/python3 -m pip install torchaudio==2.11.0
     /venv/bin/python3 -m pip install opencv-python-headless
     /venv/bin/python3 -m pip install -r https://raw.githubusercontent.com/Comfy-Org/ComfyUI/master/requirements.txt
     

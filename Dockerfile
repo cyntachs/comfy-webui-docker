@@ -26,7 +26,7 @@ RUN --mount=type=cache,target=/var/cache/apt,rw --mount=type=cache,target=/var/l
     python3 -m venv /venv; \
     /venv/bin/python3 -m pip install tzdata opencv-python glcontext; \
     /venv/bin/python3 -m pip install torch==2.11.0 torchvision==0.26.0 pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130; \
-    /venv/bin/python3 -m pip install torchaudio==2.8.0; \
+    /venv/bin/python3 -m pip install torchaudio==2.11.0; \
     /venv/bin/python3 -m pip install opencv-python-headless; \
     /venv/bin/python3 -m pip install -r https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/requirements.txt; \
     chown -R ubuntu:ubuntu /venv; 
