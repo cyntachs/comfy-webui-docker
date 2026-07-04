@@ -31,7 +31,7 @@ if [ -f "/stable-diffusion/.rebuild-venv" ]; then
     
     python3 -m venv /venv
     /venv/bin/python3 -m pip install tzdata opencv-python glcontext
-    /venv/bin/python3 -m pip install torch torchvision pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130
+    /venv/bin/python3 -m pip install torch==2.11.0 torchvision==0.26.0 pillow tqdm xformers --index-url https://download.pytorch.org/whl/cu130
     /venv/bin/python3 -m pip install torchaudio==2.8.0
     /venv/bin/python3 -m pip install opencv-python-headless
     /venv/bin/python3 -m pip install -r https://raw.githubusercontent.com/Comfy-Org/ComfyUI/master/requirements.txt
@@ -80,8 +80,12 @@ fi;
 cd /stable-diffusion
 if [ -f "/stable-diffusion/.use-sage" ]; then
     echo "========== Starting ComfyUI (Sage Attention) =========="
+    python3 -c "import sys; print(sys.version + ' ---- '+ sys.executable)"
+    python3 -c "import torch; print(torch.__version__)"
 	python3 -u main.py --use-sage-attention --listen --port 5555 ${CLI_ARGS}
 else
     echo "========== Starting ComfyUI =========="
+    python3 -c "import sys; print(sys.version + ' ---- '+ sys.executable)"
+    python3 -c "import torch; print(torch.__version__)"
 	python3 -u main.py --listen --port 5555 ${CLI_ARGS}
 fi;
