@@ -5,12 +5,36 @@ volumes:
     name: comfyui-docker-venv
 
 services:
-  comfyui-docker:
+  main:
     container_name: comfy-webui-docker
     build:
       context: .
       dockerfile: Dockerfile
     image: cyntachs/comfy-webui-docker:main
+    ports:
+      - ${PORT}:5555
+    volumes:
+      - comfyui-docker-venv:/venv
+      - ${VOLUME}:/stable-diffusion
+    environment:
+      TZ: America/New_York
+      CLI_ARGS: --disable-api-nodes
+    logging:
+      options:
+        max-size: 10m
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  test:
+    container_name: comfy-webui-docker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cyntachs/comfy-webui-docker:test
     ports:
       - ${PORT}:5555
     volumes:
